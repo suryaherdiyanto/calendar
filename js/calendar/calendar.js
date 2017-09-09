@@ -4,7 +4,9 @@ function Calendar(){
     this.currentDate = this.date.getDate();
     this.currentMonth = this.date.getMonth();
     this.currentYear = this.date.getFullYear();
-    this.getFirstDay = new Date(this.currentYear, this.currentMonth, 1);
+    this.getFirstDay = function(year, date, day = 1){
+        return new Date(year, date, day);
+    },
     this.monthLimit = 30;
     
     this.nextMonth = function(){
@@ -12,16 +14,16 @@ function Calendar(){
         this.currentMonth = next;
         if(next > 11){
             this.currentYear += 1;
-            return 1;
+            return 0;
         }else
             return next;
     }
     this.prevMonth = function () {
         var prev = this.currentMonth - 1;
         this.currentMonth = prev;
-        if (prev < 2) {
+        if (prev < 0) {
             this.currentYear -= 1;
-            return 12;
+            return 11;
         } else
             return prev;
     }
@@ -36,10 +38,10 @@ function Calendar(){
     }
     this.init = function(){
         var table = $('#calendar');
-        var thisMonthDay = this.getFirstDay.getDay();
+        var thisMonthDay = this.getFirstDay(this.currentYear, this.currentMonth).getDay();
         var html = "<table class='table'>";
         var monthDate = 1;
-        console.log(this.currentYear);
+        console.log(this.currentMonth);
 
         html += "<tr><td colspan='7' align='center'><b>" + this.toMonth(this.currentMonth) + ' ' + this.currentYear+ "</b></td></tr>";
         html += "<tr><td><b>Minggu</b></td>";
@@ -98,37 +100,37 @@ function Calendar(){
 
     this.toMonth = function(month){
         switch (month) {
-            case 1:
+            case 0:
                 return "January";
                 break;
-            case 2:
+            case 1:
                 return "February";
                 break;
-            case 3:
+            case 2:
                 return "March";
                 break;
-            case 4:
+            case 3:
                 return "April";
                 break;
-            case 5:
+            case 4:
                 return "May";
                 break;
-            case 6:
+            case 5:
                 return "June";
                 break;
-            case 7:
+            case 6:
                 return "July";
                 break;
-            case 8:
+            case 7:
                 return "August";
                 break;
-            case 9:
+            case 8:
                 return "September";
                 break;
-            case 10:
+            case 9:
                 return "October";
                 break;
-            case 11:
+            case 10:
                 return "November";
                 break;
             default:
