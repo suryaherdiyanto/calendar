@@ -1,5 +1,5 @@
-var Calendar = {
-    init: function(){
+function Calendar(){
+    this.init = function(){
         var thisDate = new Date();
         var date = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
         var table = $('#calendar');
@@ -8,8 +8,7 @@ var Calendar = {
         var monthDate = 1;
         var monthLimit = 30;
 
-        html += "<tr><td colspan='7' align='center'>" + thisDate.getFullYear() + "</td></tr>";
-        html += "<tr><td colspan='7' align='center'>" + this.monthName(thisDate.getMonth()) + "</td></tr>";
+        html += "<tr><td colspan='7' align='center'><b>" + this.toMonth(thisDate.getMonth()) + ' ' + thisDate.getFullYear()+ "</b></td></tr>";
         html += "<tr><td><b>Minggu</b></td>";
         html += "<td><b>Senin</b></td>";
         html += "<td><b>Selasa</b></th>";
@@ -32,8 +31,9 @@ var Calendar = {
         }
 
         table.append(html);
-    },
-    dayName: function(day){
+    };
+
+    this.toDay = function(day){
         switch (day) {
             case 0:
                 return "Minggu";
@@ -57,8 +57,9 @@ var Calendar = {
                 return "Sabtu";
                 break;
         }
-    },
-    monthName: function(month){
+    }
+
+    this.toMonth = function(month){
         switch (month) {
             case 0:
                 return "January";
@@ -97,5 +98,5 @@ var Calendar = {
                 return "December";
                 break;
         }
-    }, 
-};
+    }
+}
