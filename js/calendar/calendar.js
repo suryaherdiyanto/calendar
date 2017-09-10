@@ -52,7 +52,7 @@ function Calendar(){
         html += "<td><b>Jumat</b></td>";
         html += "<td><b>Sabtu</b></td></tr>";
 
-        for (var i = 0; i < 6; i++) {
+        for (var i = 0; i < 7; i++) {
             html += "<tr>";
             for (var o = 0; o < 7; o++) {
                 if (o < thisMonthDay && monthDate == 1 || monthDate > this.monthLimit) {
