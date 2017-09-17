@@ -9,6 +9,30 @@ function Calendar(){
     },
     this.monthLimit = 30;
     
+    
+    this.getMonthLimit = function(){
+        var month = this.currentMonth + 1;
+        if(month <= 7 && month != 2){
+            if (month % 2 == 1) {
+                this.monthLimit = 31;
+            }else{
+                this.monthLimit = 30;
+            }
+        }else if(month == 2){
+            if((this.currentYear % 4 == 0) && (this.currentYear % 100 != 0) || (this.currentYear % 400 == 0)){
+                this.monthLimit = 29;
+            }else{
+                this.monthLimit = 28;
+            }
+        }else if(month > 7){
+            if (month % 2 == 0) {
+                this.monthLimit = 31;
+            } else {
+                this.monthLimit = 30;
+            }
+        }
+    },
+    
     this.nextMonth = function(){
         var next = this.currentMonth + 1;
         this.currentMonth = next;
@@ -41,16 +65,17 @@ function Calendar(){
         var thisMonthDay = this.getFirstDay(this.currentYear, this.currentMonth).getDay();
         var html = "<table class='table'>";
         var monthDate = 1;
+        this.getMonthLimit();
         console.log(this.currentMonth);
 
         html += "<tr><td colspan='7' align='center'><b>" + this.toMonth(this.currentMonth) + ' ' + this.currentYear+ "</b></td></tr>";
-        html += "<tr><td><b>Minggu</b></td>";
-        html += "<td><b>Senin</b></td>";
-        html += "<td><b>Selasa</b></th>";
-        html += "<td><b>Rabu</b></td>";
-        html += "<td><b>Kamis</b></td>";
-        html += "<td><b>Jumat</b></td>";
-        html += "<td><b>Sabtu</b></td></tr>";
+        html += "<tr><td><b>Sun</b></td>";
+        html += "<td><b>Mon</b></td>";
+        html += "<td><b>Tue</b></th>";
+        html += "<td><b>Wed</b></td>";
+        html += "<td><b>Thu</b></td>";
+        html += "<td><b>Fri</b></td>";
+        html += "<td><b>Sat</b></td></tr>";
 
         for (var i = 0; i < 7; i++) {
             html += "<tr>";
@@ -75,25 +100,25 @@ function Calendar(){
     this.toDay = function(day){
         switch (day) {
             case 0:
-                return "Minggu";
+                return "Mon";
                 break;
             case 1:
-                return "Senin";
+                return "Sun";
                 break;
             case 2:
-                return "Selasa";
+                return "Tue";
                 break;
             case 3:
-                return "Rabu";
+                return "Wed";
                 break;
             case 4:
-                return "Kamis";
+                return "Thu";
                 break;
             case 5:
-                return "Jumat";
+                return "Fri";
                 break;
             default:
-                return "Sabtu";
+                return "Sat";
                 break;
         }
     }
