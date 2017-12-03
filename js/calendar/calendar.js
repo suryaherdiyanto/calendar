@@ -32,6 +32,18 @@ function Calendar(){
             }
         }
     },
+
+    this.statusBar = function(){
+        var html = "<div class='bar'>";
+        html += "<div class='status' id='prev'>";
+        html += "<span class='glyphicon glyphicon-menu-left'></span></div>";
+        html += "<div class='status' id='mid'>";
+        html += "<span>"+this.toMonth(this.currentMonth) + ' ' + this.currentYear+"</span></div>";
+        html += "<div class='status' id='next'>";
+        html += "<span class='glyphicon glyphicon-menu-right'></span></div>";
+        html += "</div>";
+        $('#status').html(html);
+    },
     
     this.nextMonth = function(){
         var next = this.currentMonth + 1;
@@ -54,10 +66,12 @@ function Calendar(){
 
     this.toNextMonth = function(){
         this.currentMonth = this.nextMonth();
+	this.statusBar();
         this.init();
     }
     this.toPrevMonth = function () {
         this.currentMonth = this.prevMonth();
+	this.statusBar();
         this.init();
     }
     this.init = function(){
@@ -68,7 +82,6 @@ function Calendar(){
         this.getMonthLimit();
         console.log(this.currentMonth);
 
-        html += "<tr><td colspan='7' align='center'><b>" + this.toMonth(this.currentMonth) + ' ' + this.currentYear+ "</b></td></tr>";
         html += "<tr><td><b>Sun</b></td>";
         html += "<td><b>Mon</b></td>";
         html += "<td><b>Tue</b></th>";

@@ -6,23 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calendar Sistem</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/calendar.css">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div>
-        <div class="row">
-            <div class="col-md-3" id="calendar">
+    <div class="col-md-3">
+        <div id="status">
 
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="btn-group">
-                    <button id="prev" class="btn btn-default glyphicon glyphicon-chevron-left"></button>
-                    <button id="next" class="btn btn-default glyphicon glyphicon-chevron-right"></button>
-                </div>
-            </div>
+        <div id="calendar">
+
         </div>
     </div>
     <script src="js/calendar/calendar.js"></script>
@@ -30,11 +24,12 @@
         $(document).ready(function(){
             var calendar = new Calendar();
             calendar.init();
+            calendar.statusBar();
 
-            $('#next').on('click', function(){
+            $(document).on('click', '#next' , function(){
                 calendar.toNextMonth();
             });
-            $('#prev').on('click', function () {
+            $(document).on('click', '#prev' , function () {
                 calendar.toPrevMonth();
             });
         });
